@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let isNicknameValid = false;
   let isPasswordValid = false;
   let isPasswordConfirmationValid = false;
-  
+
   const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 
   const loginForm = document.querySelector(".login-form");
@@ -11,7 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.querySelector("#email");
   const nicknameInput = document.querySelector("#nickname");
   const passwordInput = document.querySelector("#password");
-  const passwordConfirmationInput = document.querySelector("#passwordConfirmation");
+  const passwordConfirmationInput = document.querySelector(
+    "#passwordConfirmation"
+  );
   const submitButton = document.querySelector("button[type='submit']");
 
   // 오류 메세지 노출 함수
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     errorElement.style.display = "block";
     input.style.border = "1px solid #f74747";
   }
-  
+
   // 오류 메세지 숨김 함수
   function hideError(input, errorClass) {
     const errorElement = document.getElementsByClassName(errorClass)[0];
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function isEmailValidFormat(email) {
     return emailRegex.test(email);
   }
-  
+
   // 이메일 필드 유효성 검사
   function checkEmailValidity() {
     const emailValue = emailInput.value.trim();
@@ -112,7 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
     updateSubmitButtonState();
   }
 
-
   // 페이지 로드 시 제출 버튼 비활성화 상태로 설정
   updateSubmitButtonState();
 
@@ -121,7 +122,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let isFormValid = isEmailValid && isPasswordValid;
 
     if (signupForm) {
-      isFormValid = isFormValid && isNicknameValid && isPasswordConfirmationValid;
+      isFormValid =
+        isFormValid && isNicknameValid && isPasswordConfirmationValid;
     }
 
     submitButton.disabled = !isFormValid;
@@ -137,15 +139,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const isPasswordVisible = inputField.type === "text";
 
     inputField.type = isPasswordVisible ? "password" : "text";
-    toggleIcon.src = isPasswordVisible ? "/images/icons/eye-invisible.svg" : "/images/icons/eye-visible.svg"
-    toggleIcon.alt = isPasswordVisible ? "비밀번호 숨김 상태 아이콘" : "비밀번호 표시 상태 아이콘";
+    toggleIcon.src = isPasswordVisible
+      ? "/images/icons/eye-invisible.svg"
+      : "/images/icons/eye-visible.svg";
+    toggleIcon.alt = isPasswordVisible
+      ? "비밀번호 숨김 상태 아이콘"
+      : "비밀번호 표시 상태 아이콘";
   }
 
   // 비밀번호 토글 버튼에 이벤트 리스너 추가
   const toggleButtons = document.querySelectorAll(".password-toggle-button");
   toggleButtons.forEach((button) =>
     button.addEventListener("click", togglePasswordVisibility)
-  );  
+  );
 
   // 입력 필드에 이벤트 리스너 추가
   if (emailInput) {
@@ -159,26 +165,48 @@ document.addEventListener("DOMContentLoaded", () => {
     passwordInput.addEventListener("input", checkPasswordValidity);
   }
   if (passwordConfirmationInput) {
-    passwordConfirmationInput.addEventListener("focusout", checkPasswordConfirmationValidity);
-    passwordConfirmationInput.addEventListener("input", checkPasswordConfirmationValidity);
+    passwordConfirmationInput.addEventListener(
+      "focusout",
+      checkPasswordConfirmationValidity
+    );
+    passwordConfirmationInput.addEventListener(
+      "input",
+      checkPasswordConfirmationValidity
+    );
   }
 
   // 폼 제출 전 이벤트 리스너 제거
   function removeEventListeners() {
-    if (emailInput) {
-      emailInput.removeEventListener("focusout", checkEmailValidity);
-    }
-    if (nicknameInput) {
-      nicknameInput.removeEventListener("focusout", checkNicknameValidity);
-    }
-    if (passwordInput) {
-      passwordInput.removeEventListener("focusout", checkPasswordValidity);
-      passwordInput.removeEventListener("input", checkPasswordValidity);
-    }
-    if (passwordConfirmationInput) {
-      passwordConfirmationInput.removeEventListener("focusout", checkPasswordConfirmationValidity);
-      passwordConfirmationInput.removeEventListener("input", checkPasswordConfirmationValidity);
-    }
+    // 입력 필드 이벤트 리스너 제거
+    const inputs = [
+      {
+        element: emailInput,
+        events: ["focusout"],
+        handler: checkEmailValidity,
+      },
+      {
+        element: nicknameInput,
+        events: ["focusout"],
+        handler: checkNicknameValidity,
+      },
+      {
+        element: passwordInput,
+        events: ["focusout", "input"],
+        handler: checkPasswordValidity,
+      },
+      {
+        element: passwordConfirmationInput,
+        events: ["focusout", "input"],
+        handler: checkPasswordConfirmationValidity,
+      },
+    ];
+
+    inputs.forEach(({ element, events, handler }) => {
+      if (!element) return;
+      events.forEach((eventType) => {
+        element.removeEventListener(eventType, handler);
+      });
+    });
 
     // 비밀번호 토글 버튼의 이벤트 리스너 제거
     toggleButtons.forEach((button) =>
@@ -191,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (loginForm) {
     loginForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      removeEventListeners();  // 폼 제출 시 이벤트 제거
+      removeEventListeners(); // 폼 제출 시 이벤트 제거
       window.location.href = "/index.html";
     });
   }
@@ -199,8 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (signupForm) {
     signupForm.addEventListener("submit", (event) => {
       event.preventDefault();
-      removeEventListeners();  // 폼 제출 시 이벤트 제거
+      removeEventListeners(); // 폼 제출 시 이벤트 제거
       window.location.href = "/login.html";
     });
   }
-})
+});
