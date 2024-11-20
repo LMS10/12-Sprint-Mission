@@ -1,75 +1,111 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>판다마켓 - 로그인</title>
-  <link rel="icon" href="/images/logo/favicon.ico">
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <link rel="stylesheet" href="/styles/reset.css">
-  <link rel="stylesheet" href="/styles/variables.css">
-  <link rel="stylesheet" href="/styles/global.css">
-  <link rel="stylesheet" href="/styles/auth.css">
-</head>
-<body>
-  <div class="auth-container login">
-    <div class="logo-home-button-wrapper">
-      <a href="/"><img src="/images/logo/logo-panda-market.png" alt="판다마켓 홈"></a>
-    </div>
-    <form class="login-form" method="post">
-      <div class="auth-input">
-        <label for="email">이메일</label>
-        <input
-          id="email"
-          name="email"
-          type="email" 
-          placeholder="이메일을 입력해 주세요"
-          required
-          >
-        <span class="email-empty-error error-message">이메일을 입력해 주세요</span>
-        <span class="email-invalid-error error-message">잘못된 이메일 형식입니다</span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>판다마켓 - 로그인</title>
+    <link rel="icon" href="/images/logo/favicon.ico" />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <link rel="stylesheet" href="/styles/reset.css" />
+    <link rel="stylesheet" href="/styles/variables.css" />
+    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel="stylesheet" href="/styles/auth.css" />
+  </head>
+  <body>
+    <div class="auth-container login">
+      <div class="logo-home-button-wrapper">
+        <a href="/"
+          ><img src="/images/logo/logo-panda-market.png" alt="판다마켓 홈"
+        /></a>
       </div>
-      <div class="auth-input">
-        <label for="password">비밀번호</label>
-        <div class="input-wrapper">
+      <form class="login-form" method="post">
+        <div class="auth-input">
+          <label for="email">이메일</label>
           <input
-            id="password" 
-            name="password" 
-            type="password"
-            placeholder="비밀번호를 입력해 주세요"
+            id="email"
+            name="email"
+            type="email"
+            placeholder="이메일을 입력해 주세요"
             required
-            >
-          <button type="button" class="password-toggle-button">
-            <img
-            class="password-toggle-icon"
-            src="/images/icons/eye-invisible.svg"
-            alt="비밀번호 숨김 상태 아이콘"
-            >
-          </button>
+          />
+          <span class="email-empty-error error-message"
+            >이메일을 입력해 주세요</span
+          >
+          <span class="email-invalid-error error-message"
+            >잘못된 이메일 형식입니다</span
+          >
         </div>
-        <span class="password-empty-error error-message">비밀번호를 입력해 주세요</span>
-        <span class="password-invalid-error error-message">비밀번호를 8자 이상 입력해 주세요</span>
+        <div class="auth-input">
+          <label for="password">비밀번호</label>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="비밀번호를 입력해 주세요"
+              required
+            />
+            <button
+              type="button"
+              class="password-toggle-button"
+              data-visible-icon="/images/icons/eye-visible.svg"
+              data-invisible-icon="/images/icons/eye-invisible.svg"
+              data-visible-alt="비밀번호 표시 상태 아이콘"
+              data-invisible-alt="비밀번호 숨김 상태 아이콘"
+            >
+              <img
+                class="password-toggle-icon"
+                src="/images/icons/eye-invisible.svg"
+                alt="비밀번호 숨김 상태 아이콘"
+              />
+            </button>
+          </div>
+          <span class="password-empty-error error-message"
+            >비밀번호를 입력해 주세요</span
+          >
+          <span class="password-invalid-error error-message"
+            >비밀번호를 8자 이상 입력해 주세요</span
+          >
+        </div>
+        <button type="submit" class="button login-button">로그인</button>
+      </form>
+      <div class="social-login-container">
+        <h3>간편 로그인하기</h3>
+        <div class="social-login-buttons">
+          <a
+            href="https://www.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/social/ic-google.png"
+              alt="구글 로그인"
+              width="42"
+            />
+          </a>
+          <a
+            href="https://www.kakaocorp.com/page/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/images/social/ic-kakao.png"
+              alt="카카오톡 로그인"
+              width="42"
+            />
+          </a>
+        </div>
       </div>
-      <button type="submit" class="button login-button">
-        로그인
-      </button>
-    </form>
-    <div class="social-login-container">
-      <h3>간편 로그인하기</h3>
-      <div class="social-login-buttons">
-        <a href="https://www.google.com/" target="_blank" rel="noopener noreferrer">
-          <img src="/images/social/ic-google.png" alt="구글 로그인" width="42">
-        </a>
-        <a href="https://www.kakaocorp.com/page/" target="_blank" rel="noopener noreferrer">
-          <img src="/images/social/ic-kakao.png" alt="카카오톡 로그인" width="42">
-        </a>
+      <div class="auth-switch">
+        판다마켓이 처음이신가요? <a href="/signup.html">회원가입</a>
       </div>
     </div>
-    <div class="auth-switch">
-      판다마켓이 처음이신가요? <a href="/signup.html">회원가입</a>
-    </div>
-  </div>
 
-  <script src="/scripts/auth.js"></script>
-</body>
+    <script src="/scripts/auth.js"></script>
+  </body>
 </html>

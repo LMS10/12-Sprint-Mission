@@ -134,17 +134,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const button = event.currentTarget;
     const inputField = button.parentElement.querySelector("input");
     const toggleIcon = button.querySelector(".password-toggle-icon");
+    // 데이터 속성에서 아이콘 및 대체 텍스트 가져오기
+    const visibleIcon = button.dataset.visibleIcon;
+    const invisibleIcon = button.dataset.invisibleIcon;
+    const visibleAlt = button.dataset.visibleAlt;
+    const invisibleAlt = button.dataset.invisibleAlt;
 
     // 비밀번호가 표시된 상태인지 확인
     const isPasswordVisible = inputField.type === "text";
 
     inputField.type = isPasswordVisible ? "password" : "text";
-    toggleIcon.src = isPasswordVisible
-      ? "/images/icons/eye-invisible.svg"
-      : "/images/icons/eye-visible.svg";
-    toggleIcon.alt = isPasswordVisible
-      ? "비밀번호 숨김 상태 아이콘"
-      : "비밀번호 표시 상태 아이콘";
+    toggleIcon.src = isPasswordVisible ? invisibleIcon : visibleIcon;
+    toggleIcon.alt = isPasswordVisible ? invisibleAlt : visibleAlt;
   }
 
   // 비밀번호 토글 버튼에 이벤트 리스너 추가
